@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="980" viewBox="0 0 1200 980">
+  <rect width="1200" height="980" fill="#f3f0e6"/>
+  <rect x="55" y="45" width="1090" height="890" rx="24" fill="#fffefa" stroke="#c5d5cc" stroke-width="2"/>
+  <rect x="55" y="45" width="1090" height="100" rx="24" fill="#173f35"/><rect x="55" y="120" width="1090" height="25" fill="#173f35"/>
+  <text x="95" y="91" font-family="Arial" font-size="26" font-weight="700" fill="#ffffff">Vital Spring Medical Center</text>
+  <text x="95" y="122" font-family="Arial" font-size="15" fill="#b8d5c6">Register a patient</text>
+  <g font-family="Arial" font-size="15" font-weight="700"><circle cx="110" cy="190" r="22" fill="#d49a35"/><text x="105" y="196" fill="#173f35">1</text><text x="145" y="196" fill="#173f35">Identity</text><line x1="235" y1="190" x2="320" y2="190" stroke="#c5d5cc" stroke-width="4"/><circle cx="350" cy="190" r="22" fill="#e0e8e3"/><text x="345" y="196" fill="#53675c">2</text><text x="385" y="196" fill="#53675c">Contact</text><line x1="480" y1="190" x2="565" y2="190" stroke="#c5d5cc" stroke-width="4"/><circle cx="595" cy="190" r="22" fill="#e0e8e3"/><text x="590" y="196" fill="#53675c">3</text><text x="630" y="196" fill="#53675c">Emergency</text><line x1="745" y1="190" x2="830" y2="190" stroke="#c5d5cc" stroke-width="4"/><circle cx="860" cy="190" r="22" fill="#e0e8e3"/><text x="855" y="196" fill="#53675c">4</text><text x="895" y="196" fill="#53675c">Review</text></g>
+  <text x="95" y="267" font-family="Arial" font-size="24" font-weight="700" fill="#173f35">Patient identity</text>
+  <text x="95" y="297" font-family="Arial" font-size="15" fill="#687970">Search before creating a new record to avoid duplicates.</text>
+  <rect x="95" y="327" width="960" height="62" rx="10" fill="#edf5ef" stroke="#8fb4a1"/>
+  <text x="120" y="365" font-family="Arial" font-size="16" fill="#52685b">Search by hospital number, phone or full name</text>
+  <rect x="1070" y="327" width="40" height="62" rx="10" fill="#2d7458"/>
+  <g font-family="Arial" font-size="14" fill="#52685b"><text x="95" y="442">FIRST NAME *</text><text x="610" y="442">LAST NAME *</text></g>
+  <rect x="95" y="458" width="455" height="58" rx="8" fill="#ffffff" stroke="#9eb6aa"/><text x="117" y="493" font-family="Arial" font-size="17" fill="#24342c">Amarachi</text>
+  <rect x="610" y="458" width="455" height="58" rx="8" fill="#ffffff" stroke="#9eb6aa"/><text x="632" y="493" font-family="Arial" font-size="17" fill="#24342c">Okafor</text>
+  <g font-family="Arial" font-size="14" fill="#52685b"><text x="95" y="566">DATE OF BIRTH *</text><text x="610" y="566">SEX *</text></g>
+  <rect x="95" y="582" width="455" height="58" rx="8" fill="#ffffff" stroke="#9eb6aa"/><text x="117" y="617" font-family="Arial" font-size="17" fill="#24342c">14 / 09 / 1994</text>
+  <rect x="610" y="582" width="455" height="58" rx="8" fill="#ffffff" stroke="#9eb6aa"/><text x="632" y="617" font-family="Arial" font-size="17" fill="#24342c">Female</text>
+  <g font-family="Arial" font-size="14" fill="#52685b"><text x="95" y="690">PHONE NUMBER *</text><text x="610" y="690">EMAIL ADDRESS</text></g>
+  <rect x="95" y="706" width="455" height="58" rx="8" fill="#ffffff" stroke="#b85d4b" stroke-width="2"/><text x="117" y="741" font-family="Arial" font-size="17" fill="#24342c">080 321 44</text>
+  <text x="95" y="789" font-family="Arial" font-size="14" fill="#a14838">Enter an 11-digit Nigerian phone number.</text>
+  <rect x="610" y="706" width="455" height="58" rx="8" fill="#ffffff" stroke="#9eb6aa"/><text x="632" y="741" font-family="Arial" font-size="17" fill="#87988f">name@example.com</text>
+  <rect x="95" y="830" width="26" height="26" rx="4" fill="#ffffff" stroke="#2d7458" stroke-width="2"/>
+  <text x="137" y="850" font-family="Arial" font-size="15" fill="#35493e">I have explained how Vital Spring uses and protects patient information. *</text>
+  <rect x="826" y="872" width="108" height="48" rx="9" fill="#e5ebe7"/><text x="851" y="903" font-family="Arial" font-size="15" fill="#53675c">CANCEL</text>
+  <rect x="950" y="872" width="160" height="48" rx="9" fill="#c4d1ca"/><text x="984" y="903" font-family="Arial" font-size="15" font-weight="700" fill="#ffffff">CONTINUE</text>
+</svg>

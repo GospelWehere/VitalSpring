@@ -1,0 +1,90 @@
+---
+config:
+  theme: base
+  flowchart:
+    curve: basis
+    nodeSpacing: 45
+    rankSpacing: 65
+  themeVariables:
+    primaryColor: "#EDF7F0"
+    primaryBorderColor: "#2F6F55"
+    primaryTextColor: "#173F35"
+    lineColor: "#4D6A5B"
+    fontFamily: "Arial, sans-serif"
+    fontSize: "13px"
+---
+flowchart TB
+    PAT["Patient"]
+    FRONT["Front Desk Staff"]
+    CLIN["Doctor / Nurse"]
+    MGT["Medical Center Manager"]
+    MSG["Messaging Service"]
+
+    P1(["1.0<br/>Register and<br/>Identify Patients"])
+    P2(["2.0<br/>Maintain Practitioner<br/>Schedules"])
+    P3(["3.0<br/>Coordinate<br/>Appointments"])
+    P4(["4.0<br/>Manage Arrival<br/>and Queue"])
+    P5(["5.0<br/>Document<br/>Patient Visit"])
+    P6(["6.0<br/>Communicate and<br/>Report"])
+
+    D1[("D1 Patient Profiles")]
+    D2[("D2 Practitioner and Slots")]
+    D3[("D3 Appointments")]
+    D4[("D4 Queue Entries")]
+    D5[("D5 Visit Records")]
+    D6[("D6 Users and Activity Log")]
+
+    PAT -- "Registration data" --> P1
+    FRONT -- "Assisted registration" --> P1
+    P1 -- "Patient profile" --> D1
+    D1 -- "Patient match" --> P1
+    P1 -- "Patient number / match" --> PAT
+
+    CLIN -- "Availability update" --> P2
+    P2 -- "Practitioner and slot data" --> D2
+    D2 -- "Current schedule" --> P2
+    P2 -- "Personal schedule" --> CLIN
+
+    PAT -- "Appointment request / change" --> P3
+    FRONT -- "Assisted booking / cancellation" --> P3
+    D1 -- "Patient details" --> P3
+    D2 -- "Open slots" --> P3
+    P3 -- "Slot reservation" --> D2
+    P3 -- "Appointment record" --> D3
+    D3 -- "Current booking" --> P3
+    P3 -- "Booking status / available slots" --> PAT
+    P3 -- "Daily appointment list" --> FRONT
+
+    FRONT -- "Patient check-in" --> P4
+    D3 -- "Expected appointment" --> P4
+    P4 -- "Queue entry / status" --> D4
+    D4 -- "Current queue" --> P4
+    P4 -- "Queue position" --> FRONT
+    P4 -- "Waiting queue" --> CLIN
+
+    CLIN -- "Consultation notes / outcome" --> P5
+    D1 -- "Patient identity" --> P5
+    D3 -- "Appointment details" --> P5
+    D5 -- "Relevant history" --> P5
+    P5 -- "Visit record" --> D5
+    P5 -- "Updated appointment status" --> D3
+    P5 -- "Relevant patient history" --> CLIN
+
+    D3 -- "Appointment outcomes" --> P6
+    D4 -- "Waiting-time data" --> P6
+    D6 -- "Authorized users / activity" --> P6
+    P6 -- "Confirmation / reminder" --> MSG
+    MSG -- "Delivery result" --> P6
+    MGT -- "Report criteria / account approval" --> P6
+    P6 -- "Attendance / waiting-time / utilization report" --> MGT
+    P6 -- "Booking notice" --> PAT
+    P1 -- "Registration event" --> D6
+    P2 -- "Schedule event" --> D6
+    P3 -- "Booking event" --> D6
+    P4 -- "Queue event" --> D6
+    P5 -- "Record access event" --> D6
+
+    classDef process fill:#1E6048,color:#FFFFFF,stroke:#123D2F,stroke-width:2px
+    classDef store fill:#FFF4DF,color:#3E3422,stroke:#C78C2D
+    class P1,P2,P3,P4,P5,P6 process
+    class D1,D2,D3,D4,D5,D6 store

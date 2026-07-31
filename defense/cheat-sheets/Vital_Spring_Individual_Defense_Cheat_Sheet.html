@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vital Spring Individual Defense Cheat Sheet</title>
+<style>
+@page { size:A4; margin:13mm 14mm 14mm; @bottom-center { content:counter(page) " / " counter(pages); font:8pt Arial; color:#5c735e; } }
+*{box-sizing:border-box} body{margin:0;color:#1a3321;font:9.2pt/1.32 Arial,sans-serif} h1,h2,h3,p{margin-top:0} h1{font-size:24pt;line-height:1.05;color:#fff} h2{font-size:14pt;color:#1f5c2e;border-bottom:2px solid #2b8a3f;padding-bottom:2mm;margin-bottom:3mm} h3{font-size:10.5pt;color:#1a4d28;margin-bottom:1.5mm}.cover{height:270mm;background:#14301d;color:#fff;margin:-13mm -14mm -14mm;padding:28mm 18mm;position:relative}.cover .logo{font:bold 20pt Georgia;color:#f5c542}.cover .tag{font:italic 14pt Georgia;color:#c4dbbf}.cover .bar{height:2.5mm;background:#f5c542;margin:18mm -18mm 12mm}.cover .meta{position:absolute;bottom:24mm;color:#c4dbbf}.page{break-before:page}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:4mm}.box{border:1px solid #b4d4a8;border-left:4px solid #2b8a3f;background:#e8f3e3;padding:3mm;margin-bottom:3mm;break-inside:avoid}.amber{background:#fff6e7;border-color:#d4a843}.dark{background:#1a4d28;color:#fff;border:0}.dark h3{color:#f5c542}.metric{font-size:18pt;font-weight:bold;color:#1f5c2e}.dark .metric{color:#f5c542} ul,ol{margin:1mm 0 0;padding-left:5mm} li{margin:0 0 1mm} table{width:100%;border-collapse:collapse;font-size:8.5pt;margin-bottom:3mm} th{background:#1a4d28;color:#fff;text-align:left;padding:2mm}td{border:1px solid #b4d4a8;padding:1.7mm;vertical-align:top}code{font-family:Consolas,monospace;color:#1f5c2e}.script{font:10.3pt/1.42 Georgia,serif}.tiny{font-size:7.7pt;color:#5c735e}.badge{display:inline-block;background:#dcefd4;color:#1f5c2e;border-radius:10mm;padding:1mm 2.5mm;font-weight:bold;margin:.5mm}.footer-note{position:absolute;bottom:22mm;width:160mm;color:#c4dbbf}
+</style>
+</head>
+<body>
+<section class="cover">
+  <div class="logo">&nabla;</div>
+  <div style="margin-top:18mm;font:11pt Arial;color:#9fc4df;letter-spacing:2px">INDIVIDUAL DEFENSE KIT</div>
+  <h1 style="margin:4mm 0 5mm">Vital Spring<br>Medical Center<br>Defense Cheat Sheet</h1>
+  <p class="tag">Care in motion. Information in place.</p>
+  <div class="bar"></div>
+  <p style="font-size:14pt"><b>INS 204</b> &middot; System Analysis and Design<br>Group 9 &middot; 200 Level</p>
+  <div class="footer-note">Use this sheet to recall the structure and reasoning. Do not read it word-for-word during the defense.</div>
+</section>
+
+<section class="page">
+<h2>1. The Project in 60 Seconds</h2>
+<div class="box dark script"><h3>Opening answer</h3>Vital Spring Medical Center is treated as a medium-sized Nigerian outpatient facility that currently relies on paper folders, handwritten registers and a physical appointment book. The proposed Clinic Appointment System replaces the fragmented process with a secure browser-based service for patient registration, practitioner availability, appointment booking, patient check-in, live queue coordination, visit documentation, reminders and management reporting.</div>
+<div class="grid2">
+<div class="box"><h3>Core problem</h3><ul><li>Paper records are disconnected and easily lost.</li><li>Double-booked slots and missing files.</li><li>No automatic reminders or dependable statistics.</li><li>No accountable access to sensitive information.</li></ul></div>
+<div class="box"><h3>Core value</h3><ul><li>One source of truth for patients and slots.</li><li>Live queue tracking reduces waiting times.</li><li>Automated confirmations and reminders.</li><li>Measurable attendance, wait and utilisation.</li></ul></div>
+</div>
+<h2>2. Numbers You Must Know</h2>
+<div class="grid2">
+<div class="box"><span class="metric">18 + 12</span><br>functional + non-functional requirements</div>
+<div class="box"><span class="metric">6 + 6</span><br>Level-0 processes + data stores</div>
+<div class="box"><span class="metric">10</span><br>principal database entities</div>
+<div class="box"><span class="metric">22 weeks</span><br>proposed implementation period</div>
+<div class="box amber"><span class="metric">&#8358;7.30m</span><br>one-time investment</div>
+<div class="box amber"><span class="metric">&#8358;1.40m</span><br>annual recurring cost</div>
+<div class="box amber"><span class="metric">&#8358;4.50m</span><br>annual quantified benefits</div>
+<div class="box amber"><span class="metric">2.35 years</span><br>payback; five-year BCR &#8776; 3.2</div>
+</div>
+<p class="tiny">Economic figures are illustrative 2026 classroom estimates, not vendor quotations.</p>
+<h2>3. Objectives and Boundaries</h2>
+<table><tr><th>Success targets</th><th>Deliberately out of scope</th></tr><tr><td>Zero double-booking; patient search under 5 seconds; existing-patient booking under 2 minutes; median wait reduced 20%; 99% clinic-hours availability; quarterly restoration within 4 hours.</td><td>Billing and payments, insurance claims, pharmacy stock, laboratory integration, telemedicine, external health-record exchange and automated diagnosis.</td></tr></table>
+</section>
+
+<section class="page">
+<h2>4. Models: What Each Diagram Proves</h2>
+<table><tr><th>Model</th><th>What it shows</th><th>Defense sentence</th></tr>
+<tr><td>Context DFD</td><td>One system process and five external entities</td><td>It defines the system boundary; internal stores are intentionally omitted because the context diagram abstracts implementation detail.</td></tr>
+<tr><td>Level-0 DFD</td><td>Six internal processes and six stores</td><td>It decomposes Vital Spring; Process 3.0 Coordinate Appointments is central because it validates slots, reserves one, records the booking source and triggers communication.</td></tr>
+<tr><td>ERD</td><td>Entities, attributes, PK/FK, cardinality and optionality</td><td>It defines the logical data structure, not data movement. Queue entries and availability slots are separate entities because an appointment reserves a planned slot while the queue captures actual arrival.</td></tr>
+<tr><td>Architecture</td><td>Four access channels, web gateway, five application services</td><td>Clients never access the database directly; all requests pass through the secure web gateway and a dedicated application service.</td></tr></table>
+
+<div class="grid2">
+<div class="box"><h3>Six Level-0 processes</h3><ol><li>Register and Identify Patients</li><li>Maintain Practitioner Schedules</li><li>Coordinate Appointments</li><li>Manage Arrival and Queue</li><li>Document Patient Visit</li><li>Communicate and Report</li></ol></div>
+<div class="box"><h3>Ten entities</h3><ol><li>Patient</li><li>Department</li><li>Practitioner</li><li>Availability Slot</li><li>Appointment</li><li>Queue Entry</li><li>Visit Record</li><li>Notification</li><li>User Account</li><li>Activity Log</li></ol></div>
+</div>
+<h2>5. ERD and Normalization</h2>
+<div class="box"><h3>Key cardinalities</h3><span class="badge">Patient 1:M Appointment</span><span class="badge">Practitioner 1:M Appointment</span><span class="badge">Department 1:M Practitioner</span><span class="badge">Appointment 1:1 Availability Slot</span><span class="badge">Appointment 1:0..1 Visit Record</span><span class="badge">Appointment 1:M Queue Entry</span><span class="badge">User Account 1:M Activity Log</span></div>
+<table><tr><th>Stage</th><th>Change</th><th>Anomaly removed</th></tr><tr><td>UNF</td><td>Paper register contains repeating appointment groups inside a single patient row.</td><td>Starting problem</td></tr><tr><td>1NF</td><td>Atomic values; one appointment per row.</td><td>Repeating groups</td></tr><tr><td>2NF</td><td>Patient facts separated from composite appointment data.</td><td>Partial dependencies</td></tr><tr><td>3NF</td><td>Practitioner, department and location facts separated.</td><td>Transitive dependencies</td></tr></table>
+<div class="box amber"><h3>Three anomalies</h3><b>Update:</b> changing Dr. Ibekwe's department everywhere. <b>Insertion:</b> unable to add a practitioner without an appointment. <b>Deletion:</b> deleting the only appointment removes patient facts.</div>
+</section>
+
+<section class="page">
+<h2>6. Strongest Technical Defense</h2>
+<div class="box dark"><h3>How double-booking is prevented</h3><ol><li>The interface displays only open, future slots.</li><li>The server locks the selected slot, rechecks its status and reserves it inside one database transaction.</li><li>A unique constraint (unique slot_id on active appointment) permits only one appointment per slot.</li><li>If two users confirm simultaneously, one commit succeeds; the other rolls back and receives available alternatives.</li></ol></div>
+<pre style="background:#e8f3e3;border-left:4px solid #2b8a3f;padding:3mm;font:8.5pt Consolas;white-space:pre-wrap">BEGIN;
+SELECT status FROM availability_slot
+WHERE id = :slot_id FOR UPDATE;
+-- application checks status is 'open'
+INSERT INTO appointment (slot_id, patient_id, ...)
+VALUES (:slot_id, :patient_id, ...);
+UPDATE availability_slot SET status = 'reserved'
+WHERE id = :slot_id;
+COMMIT;</pre>
+<h2>7. Architecture, Security and Recovery</h2>
+<div class="grid2">
+<div class="box"><h3>Four access channels</h3><ul><li><b>Patient portal:</b> self-service booking and history</li><li><b>Front desk:</b> registration, booking, check-in</li><li><b>Clinical:</b> queue, history, visit records</li><li><b>Management:</b> reports, accounts, activity review</li></ul></div>
+<div class="box"><h3>Security controls</h3><ul><li>HTTPS in transit; encryption at rest</li><li>Strong password hashes + MFA for privileged roles</li><li>Role-based, minimum-necessary access</li><li>15-minute staff inactivity timeout</li><li>Append-only activity log</li><li>Daily encrypted backups + quarterly restoration</li></ul></div>
+</div>
+<div class="box amber"><h3>Privacy wording</h3>The design follows the Nigeria Data Protection Act 2023 and professional confidentiality principles. It is a classroom system proposal, not a claim of legal certification.</div>
+<h2>8. Implementation and Testing</h2>
+<p><b>Phases:</b> confirm requirements &rarr; prototype &rarr; build &rarr; test &rarr; prepare data &rarr; train &rarr; pilot &rarr; deploy &rarr; review at 22, 30 and 90 days.</p>
+<p><b>Critical tests:</b> simultaneous slot booking; role bypass; invalid registration; duplicate detection; reminder retry; report reconciliation; 25-user performance; backup restoration within four hours.</p>
+<p><b>Downtime:</b> printed next-day appointment list + numbered downtime sheets; one-person back-capture and second-person verification after recovery.</p>
+<h2>9. Answer Formula</h2>
+<div class="box"><b>Define &rarr; Apply &rarr; Justify &rarr; Example.</b><br><br><i>"Cardinality states how many instances may relate. In Vital Spring, one patient can have many appointments, but each appointment has exactly one patient. This models repeat visits while preventing an unidentified appointment."</i></div>
+<div class="box dark script"><h3>Closing answer</h3>Vital Spring is technically, economically and operationally feasible. It replaces disconnected paper processes with a secure, auditable workflow that prevents scheduling conflicts, tracks live patient flow, reduces no-shows and gives management reliable attendance and waiting-time information.</div>
+</section>
+</body></html>

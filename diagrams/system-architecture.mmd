@@ -1,0 +1,71 @@
+---
+config:
+  theme: base
+  flowchart:
+    curve: basis
+    nodeSpacing: 45
+    rankSpacing: 60
+  themeVariables:
+    primaryColor: "#EDF7F0"
+    primaryBorderColor: "#2F6F55"
+    primaryTextColor: "#173F35"
+    lineColor: "#4D6A5B"
+    fontFamily: "Arial, sans-serif"
+    fontSize: "13px"
+---
+flowchart TB
+    subgraph ACCESS["Access Channels"]
+      PHONE["Patient Phone<br/>Self-service booking"]
+      DESK["Reception and Records<br/>Workstations"]
+      CARE["Clinical Workstations<br/>Doctor / Nurse"]
+      MGMT["Manager Workstation<br/>Reports"]
+    end
+
+    EDGE["Secure Web Gateway<br/>HTTPS, request filtering, rate limits"]
+
+    subgraph SERVICES["Vital Spring Application Services"]
+      UI["Responsive Web Interface"]
+      ID["Identity and Role Service"]
+      BOOK["Scheduling and Queue Service"]
+      CLIN["Visit Documentation Service"]
+      REPORT["Reporting Service"]
+      JOB["Background Message Worker"]
+    end
+
+    subgraph DATA["Protected Data Zone"]
+      DB[("Relational Database")]
+      LOG[("Activity Log")]
+      BACK[("Encrypted Backup Copy")]
+    end
+
+    GATEWAY["External SMS / Email Provider"]
+    PRINT["Daily Downtime Pack<br/>next-day list and numbered sheets"]
+
+    PHONE -->|HTTPS| EDGE
+    DESK -->|HTTPS| EDGE
+    CARE -->|HTTPS| EDGE
+    MGMT -->|HTTPS| EDGE
+    EDGE --> UI
+    UI --> ID
+    UI --> BOOK
+    UI --> CLIN
+    UI --> REPORT
+    ID --> DB
+    ID --> LOG
+    BOOK --> DB
+    BOOK --> LOG
+    CLIN --> DB
+    CLIN --> LOG
+    REPORT --> DB
+    JOB --> DB
+    JOB -->|Minimum message data| GATEWAY
+    GATEWAY -->|Delivery result| JOB
+    DB -->|Scheduled encrypted backup| BACK
+    BOOK -->|Before close of business| PRINT
+
+    style EDGE fill:#C78C2D,color:#FFFFFF,stroke:#865A12,stroke-width:2px
+    style DB fill:#EDF7F0,stroke:#2F6F55,stroke-width:2px
+    style LOG fill:#FFF4DF,stroke:#C78C2D
+    style BACK fill:#FFF4DF,stroke:#C78C2D
+    style GATEWAY fill:#FFF0EE,stroke:#B65B4D
+    style PRINT fill:#F7F1DF,stroke:#B47A1F

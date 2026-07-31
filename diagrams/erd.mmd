@@ -1,0 +1,116 @@
+---
+config:
+  theme: base
+  themeVariables:
+    primaryColor: "#EDF7F0"
+    primaryBorderColor: "#2F6F55"
+    primaryTextColor: "#173F35"
+    lineColor: "#4D6A5B"
+    fontFamily: "Arial, sans-serif"
+    fontSize: "13px"
+---
+erDiagram
+    PATIENT ||--o{ APPOINTMENT : requests
+    DEPARTMENT ||--o{ PRACTITIONER : contains
+    PRACTITIONER ||--o{ AVAILABILITY_SLOT : offers
+    PATIENT ||--o{ APPOINTMENT : attends
+    PRACTITIONER ||--o{ APPOINTMENT : receives
+    AVAILABILITY_SLOT ||--o| APPOINTMENT : reserves
+    APPOINTMENT ||--o| QUEUE_ENTRY : creates
+    APPOINTMENT ||--o| VISIT_RECORD : results_in
+    APPOINTMENT ||--o{ NOTIFICATION : generates
+    USER_ACCOUNT ||--o{ APPOINTMENT : records
+    USER_ACCOUNT ||--o{ ACTIVITY_LOG : performs
+
+    PATIENT {
+        int patient_id PK
+        string hospital_number UK
+        string first_name
+        string last_name
+        date date_of_birth
+        string sex
+        string phone
+        string email
+        string address
+        string emergency_contact
+        datetime registered_at
+    }
+    DEPARTMENT {
+        int department_id PK
+        string department_name UK
+        string location
+    }
+    PRACTITIONER {
+        int practitioner_id PK
+        int department_id FK
+        string staff_number UK
+        string full_name
+        string professional_role
+        string phone
+        string email
+        boolean active
+    }
+    AVAILABILITY_SLOT {
+        int slot_id PK
+        int practitioner_id FK
+        date slot_date
+        time start_time
+        time end_time
+        string slot_status
+    }
+    APPOINTMENT {
+        int appointment_id PK
+        int patient_id FK
+        int practitioner_id FK
+        int slot_id FK
+        int recorded_by FK
+        string booking_source
+        string visit_reason
+        string status
+        datetime booked_at
+    }
+    QUEUE_ENTRY {
+        int queue_entry_id PK
+        int appointment_id FK
+        datetime checked_in_at
+        int queue_number
+        string queue_status
+        datetime called_at
+        datetime completed_at
+    }
+    VISIT_RECORD {
+        int visit_record_id PK
+        int appointment_id FK
+        text presenting_complaint
+        text clinical_findings
+        text diagnosis
+        text care_plan
+        datetime documented_at
+    }
+    NOTIFICATION {
+        int notification_id PK
+        int appointment_id FK
+        string message_type
+        string channel
+        string destination
+        string delivery_status
+        datetime processed_at
+    }
+    USER_ACCOUNT {
+        int user_id PK
+        string username UK
+        string password_hash
+        string role
+        string display_name
+        boolean active
+        datetime last_login
+    }
+    ACTIVITY_LOG {
+        int activity_id PK
+        int user_id FK
+        string action_type
+        string object_type
+        int object_id
+        datetime action_time
+        string source_address
+    }

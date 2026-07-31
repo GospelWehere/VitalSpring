@@ -1,0 +1,43 @@
+---
+config:
+  theme: base
+  flowchart:
+    curve: basis
+  themeVariables:
+    primaryColor: "#EDF7F0"
+    primaryBorderColor: "#2F6F55"
+    primaryTextColor: "#173F35"
+    lineColor: "#4D6A5B"
+    fontFamily: "Arial, sans-serif"
+    fontSize: "15px"
+---
+flowchart LR
+    PAT["Patient"]
+    FRONT["Front Desk Staff"]
+    CLIN["Doctor / Nurse"]
+    MGT["Medical Center Manager"]
+    MSG["Messaging Service"]
+
+    SYS(["0<br/>Vital Spring Medical Center<br/>Clinic Appointment System"])
+
+    PAT -- "Registration data<br/>appointment request<br/>change or cancellation" --> SYS
+    SYS -- "Available slots<br/>booking status<br/>arrival instructions" --> PAT
+
+    FRONT -- "Assisted registration<br/>booking details<br/>patient check-in" --> SYS
+    SYS -- "Patient match<br/>daily appointment list<br/>queue position" --> FRONT
+
+    CLIN -- "Availability updates<br/>queue action<br/>visit notes" --> SYS
+    SYS -- "Personal schedule<br/>waiting queue<br/>relevant patient history" --> CLIN
+
+    MGT -- "Report criteria<br/>account approval" --> SYS
+    SYS -- "Attendance summary<br/>waiting-time report<br/>service utilization" --> MGT
+
+    SYS -- "Confirmation and reminder message" --> MSG
+    MSG -- "Delivery result" --> SYS
+
+    style SYS fill:#1E6048,color:#FFFFFF,stroke:#123D2F,stroke-width:3px
+    style PAT fill:#F7F1DF,stroke:#B47A1F
+    style FRONT fill:#EDF7F0,stroke:#2F6F55
+    style CLIN fill:#EDF7F0,stroke:#2F6F55
+    style MGT fill:#EDF7F0,stroke:#2F6F55
+    style MSG fill:#FFF4DF,stroke:#C78C2D

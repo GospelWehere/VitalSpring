@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vital Spring Medical Center Appointment System - Project Charter and Feasibility Study</title>
+<style>
+  @page { size: A4; margin: 22mm 19mm 20mm; }
+  @page:first { margin: 0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: #202923; background: #fffef9; font: 11pt/1.55 Georgia, "Times New Roman", serif; }
+  h1, h2, h3 { font-family: Arial, Helvetica, sans-serif; color: #184c3b; page-break-after: avoid; }
+  h1 { page-break-before: always; margin: 0 0 14pt; padding-bottom: 6pt; border-bottom: 2.5pt solid #d49a35; font-size: 20pt; }
+  h1.first { page-break-before: auto; }
+  h2 { margin: 15pt 0 6pt; font-size: 14pt; }
+  h3 { margin: 11pt 0 4pt; font-size: 11.5pt; color: #2c7057; }
+  p { margin: 0 0 8pt; text-align: justify; }
+  ol, ul { margin: 4pt 0 9pt 20pt; padding-left: 8pt; }
+  li { margin-bottom: 4pt; }
+  table { width: 100%; border-collapse: collapse; margin: 8pt 0 13pt; font: 9.3pt/1.4 Arial, Helvetica, sans-serif; page-break-inside: avoid; }
+  th { padding: 6pt; background: #24624d; color: white; border: .6pt solid #184c3b; text-align: left; }
+  td { padding: 5.5pt 6pt; border: .6pt solid #adc4b7; vertical-align: top; }
+  tr:nth-child(even) td { background: #edf5ef; }
+  caption { text-align: left; color: #184c3b; font-weight: bold; margin-bottom: 4pt; }
+  .right { text-align: right; }
+  .cover { width: 210mm; height: 297mm; position: relative; overflow: hidden; color: white; background: #184c3b; page-break-after: always; font-family: Arial, Helvetica, sans-serif; }
+  .cover:before { content: ""; position: absolute; width: 180mm; height: 180mm; border: 1.5pt solid #5f917c; border-radius: 50%; right: -72mm; top: -48mm; }
+  .cover:after { content: ""; position: absolute; width: 112mm; height: 112mm; border: 23mm solid #bd8529; border-radius: 50%; left: -81mm; bottom: -60mm; }
+  .cover-inner { position: relative; z-index: 2; height: 100%; padding: 25mm 24mm; }
+  .school { color: #d3e3db; text-transform: uppercase; letter-spacing: 1.3pt; font-size: 10pt; line-height: 1.6; }
+  .mark { width: 28mm; border-top: 3mm solid #d49a35; border-bottom: 1mm solid #91b7a3; height: 8mm; margin-top: 28mm; }
+  .cover h1 { page-break-before: auto; border: 0; color: white; margin: 10mm 0 4mm; padding: 0; font-size: 28pt; line-height: 1.12; }
+  .cover .subtitle { color: #d9e6df; font-size: 15pt; }
+  .cover .doctype { margin-top: 15mm; color: #f0bd69; font-weight: bold; font-size: 12pt; letter-spacing: 1pt; text-transform: uppercase; }
+  .cover .course { position: absolute; left: 24mm; bottom: 25mm; padding-left: 6mm; border-left: 3pt solid #d49a35; color: #d9e6df; font-size: 10.5pt; line-height: 1.65; }
+  .front { page-break-after: always; }
+  .front h1 { page-break-before: auto; }
+  .brief { border-left: 4pt solid #d49a35; background: #faf2df; padding: 9pt 11pt; margin: 10pt 0; page-break-inside: avoid; }
+  .finding { border-left: 4pt solid #2c7057; background: #edf5ef; padding: 9pt 11pt; margin: 10pt 0; page-break-inside: avoid; }
+  .label { color: #184c3b; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+  .toc li { margin-bottom: 7pt; }
+  .small { font-size: 9pt; color: #53675c; }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="cover-inner">
+    <div class="school">
+      Federal University of Technology Owerri<br>
+      School of Information and Communication Technology<br>
+      Department of Software Engineering
+    </div>
+    <div class="mark"></div>
+    <h1>Vital Spring Medical Center</h1>
+    <div class="subtitle">Clinic Appointment System</div>
+    <div class="doctype">Project Charter &amp; Feasibility Study</div>
+    <div class="course">
+      <strong>INS 204 - System Analysis and Design</strong><br>
+      200 Level &nbsp;|&nbsp; Group 9<br>
+      2025/2026 Academic Session
+    </div>
+  </div>
+</section>
+
+<section class="front">
+  <h1 class="first">Group Members</h1>
+  <table>
+    <tr><th style="width:10%">S/N</th><th>Student Name</th><th style="width:32%">Matriculation Number</th></tr>
+    <tr><td>1</td><td>Chidozie David</td><td>20241433102</td></tr>
+    <tr><td>2</td><td>Onwuegbula Obinna</td><td>20241426652</td></tr>
+    <tr><td>3</td><td>Wehere Gospel</td><td>20241426052</td></tr>
+    <tr><td>4</td><td>Egba Tomure Chibuike</td><td>20241424822</td></tr>
+    <tr><td>5</td><td>Emmanuel Hannah</td><td>20252560142</td></tr>
+    <tr><td>6</td><td>Isoma Aaron</td><td>20241464082</td></tr>
+    <tr><td>7</td><td>Okoro Precious</td><td>20241443222</td></tr>
+    <tr><td>8</td><td>Eneh Desmond</td><td>20241427892</td></tr>
+    <tr><td>9</td><td>Ijeaku Chiemezie</td><td>20241481232</td></tr>
+    <tr><td>10</td><td>Irodi David</td><td>20241456622</td></tr>
+  </table>
+</section>
+
+<section class="front toc">
+  <h1 class="first">Table of Contents</h1>
+  <ol>
+    <li>Introduction</li>
+    <li>Project Charter
+      <ol>
+        <li>Project Title</li>
+        <li>Problem Statement</li>
+        <li>Project Goals</li>
+        <li>Project Scope</li>
+        <li>Key Stakeholders</li>
+      </ol>
+    </li>
+    <li>Feasibility Analysis
+      <ol>
+        <li>Technical Feasibility</li>
+        <li>Economic Feasibility and Simple Cost-Benefit Analysis</li>
+        <li>Operational Feasibility</li>
+      </ol>
+    </li>
+    <li>Conclusion</li>
+    <li>References</li>
+  </ol>
+</section>
+
+<section>
+  <h1 class="first">1.0 Introduction</h1>
+  <p>Vital Spring Medical Center is a local outpatient medical facility that provides consultations and related healthcare services. The center currently manages patient records and appointments with paper folders, handwritten registers and a physical appointment book. Staff members register patients manually, search for folders before consultations, write appointment details into a book and communicate changes mainly through telephone calls.</p>
+  <p>This method becomes difficult to control as the number of patients increases. A missing folder can delay a consultation, an unclear schedule can result in two patients being assigned to the same doctor at the same time, and management cannot quickly obtain dependable information about attendance or doctor workload. The proposed Vital Spring Medical Center Clinic Appointment System will automate the principal activities involved in patient registration, doctor availability and appointment scheduling.</p>
+  <div class="brief"><span class="label">Purpose of this document:</span> To define the project scope, identify the stakeholders and determine whether the proposed appointment system is technically, economically and operationally feasible, as required in Step 1 of the project assignment.</div>
+</section>
+
+<section>
+  <h1>2.0 Project Charter</h1>
+
+  <h2>2.1 Project Title</h2>
+  <p><strong>Vital Spring Medical Center Clinic Appointment System</strong></p>
+
+  <h2>2.2 Problem Statement</h2>
+  <p>Vital Spring Medical Center depends on paper folders and a physical appointment book for its patient and appointment activities. This manual system is inefficient and creates the following problems:</p>
+  <ol>
+    <li><strong>Scheduling conflicts:</strong> Staff members may allocate the same doctor and time period to more than one patient because availability is checked manually.</li>
+    <li><strong>Difficulty retrieving patient records:</strong> Employees must search through shelves and files to find a returning patient's folder. Misfiled records may not be found when required.</li>
+    <li><strong>Lost or damaged patient history:</strong> Paper records can be misplaced, torn, exposed to moisture or handled by unauthorized persons. A damaged folder may contain information that cannot easily be reconstructed.</li>
+    <li><strong>Long waiting times:</strong> Patients wait while staff register information repeatedly, locate folders, confirm doctor availability and organize the consultation queue.</li>
+    <li><strong>Administrative burden:</strong> Receptionists and records personnel spend substantial time writing, copying, sorting and counting appointment information.</li>
+    <li><strong>Poor appointment communication:</strong> Confirmations, reminders, rescheduling information and cancellations depend on manual telephone calls. Patients may therefore forget appointments or arrive at the wrong time.</li>
+    <li><strong>Limited management information:</strong> Attendance figures, cancellations, missed appointments and doctor workload must be counted manually and may not be accurate.</li>
+    <li><strong>Weak privacy control:</strong> Physical folders do not provide reliable role-based access or an electronic record of who viewed or changed confidential patient information.</li>
+  </ol>
+  <p>These problems reduce staff productivity, inconvenience patients and may affect the continuity and confidentiality of care. Vital Spring Medical Center therefore needs an automated system that centralizes appointment and patient information and makes it available only to authorized users.</p>
+
+  <h2>2.3 Project Goals</h2>
+  <p>The main goal of the project is to design an automated clinic appointment system that improves the speed, accuracy and security of appointment management at Vital Spring Medical Center.</p>
+  <p>The system is expected to achieve the following specific goals:</p>
+  <ol>
+    <li>Provide a centralized electronic profile for every registered patient.</li>
+    <li>Allow patients or reception staff to book appointments without relying only on a physical appointment book.</li>
+    <li>Allow appointments to be rescheduled or cancelled and keep their current status visible to authorized users.</li>
+    <li>Allow doctors to define or update their available consultation periods.</li>
+    <li>Check doctor availability before an appointment is accepted and prevent conflicting bookings.</li>
+    <li>Give doctors quick access to their daily schedule and relevant patient history before consultation.</li>
+    <li>Allow authorized clinical personnel to add consultation notes to a patient's medical history.</li>
+    <li>Send appointment confirmations and reminders to patients through available communication channels.</li>
+    <li>Reduce the time spent searching for records and manually preparing appointment information.</li>
+    <li>Generate basic reports on clinic attendance, missed appointments and doctor utilization.</li>
+    <li>Protect patient information through user authentication, role-based access, backups and accountability records.</li>
+  </ol>
+
+  <h2>2.4 Project Scope</h2>
+  <p>The scope defines the functions that will be included in the proposed system and the functions that will remain outside this project.</p>
+
+  <h3>2.4.1 Functions Included in the System</h3>
+  <table>
+    <caption>Table 2.1: Functions within project scope</caption>
+    <tr><th style="width:30%">Functional Area</th><th>What the System Will Do</th></tr>
+    <tr><td>Patient profiles</td><td>Register new patients, assign a unique patient number, search for patients and update approved personal and contact details.</td></tr>
+    <tr><td>Doctor information</td><td>Maintain doctor profiles, specialties and active status.</td></tr>
+    <tr><td>Doctor availability</td><td>Record the dates and periods during which each doctor is available for appointments.</td></tr>
+    <tr><td>Appointment scheduling</td><td>Book, confirm, reschedule and cancel appointments after checking available time slots.</td></tr>
+    <tr><td>Appointment status</td><td>Record whether a patient is booked, checked in, in consultation, completed, cancelled or absent.</td></tr>
+    <tr><td>Medical history</td><td>Allow authorized doctors to view relevant history and record consultation notes linked to an appointment.</td></tr>
+    <tr><td>Notifications</td><td>Prepare and send booking confirmations, reminders and cancellation messages by SMS or email where available.</td></tr>
+    <tr><td>Reports</td><td>Produce basic clinic attendance, missed-appointment and doctor-utilization reports.</td></tr>
+    <tr><td>Security and administration</td><td>Authenticate users, apply permissions, record important activities and support backup and recovery.</td></tr>
+  </table>
+
+  <h3>2.4.2 Functions Excluded from the System</h3>
+  <table>
+    <caption>Table 2.2: Functions outside project scope</caption>
+    <tr><th>Excluded Function</th><th>Reason for Exclusion</th></tr>
+    <tr><td>Medical billing and payment processing</td><td>The assignment focuses on appointments and patient records rather than clinic finance.</td></tr>
+    <tr><td>Health-insurance claims</td><td>Insurance verification and claims processing require separate rules and external integrations.</td></tr>
+    <tr><td>Pharmacy inventory</td><td>Drug purchasing, dispensing and stock control form a separate information system.</td></tr>
+    <tr><td>Laboratory management</td><td>Laboratory orders, equipment and result processing are not part of appointment scheduling.</td></tr>
+    <tr><td>Inpatient admission and bed management</td><td>The proposed solution is limited to outpatient clinic activities.</td></tr>
+    <tr><td>Staff payroll and human resources</td><td>Employee finance and personnel administration are outside the medical appointment process.</td></tr>
+  </table>
+
+  <h2>2.5 Key Stakeholders</h2>
+  <table>
+    <caption>Table 2.3: Key stakeholders and their interests</caption>
+    <tr><th style="width:25%">Stakeholder</th><th>Role in or Interest in the Project</th></tr>
+    <tr><td>Clinic Manager</td><td>Approves the project, provides resources, monitors implementation and uses reports to assess clinic performance.</td></tr>
+    <tr><td>Doctors</td><td>Provide their availability, view daily appointments, review relevant patient history and record consultation notes.</td></tr>
+    <tr><td>Nurses</td><td>View authorized patient and appointment information, assist with patient check-in and support the consultation process.</td></tr>
+    <tr><td>Receptionists</td><td>Register patients, search for profiles, book appointments, reschedule visits, cancel bookings and confirm arrivals.</td></tr>
+    <tr><td>Records Staff</td><td>Maintain the quality of patient information and assist with converting active paper records into electronic form.</td></tr>
+    <tr><td>Patients</td><td>Supply registration information, request available appointments and receive confirmations, reminders and changes.</td></tr>
+    <tr><td>System Administrator</td><td>Creates user accounts, assigns approved permissions, monitors the system and manages backups and technical support.</td></tr>
+    <tr><td>Project Team</td><td>Gathers requirements and designs the processes, data, interfaces and technical structure of the proposed system.</td></tr>
+  </table>
+</section>
+
+<section>
+  <h1>3.0 Feasibility Analysis</h1>
+  <p>The feasibility analysis determines whether the proposed Vital Spring Medical Center Clinic Appointment System can be developed and used successfully. In accordance with the assignment, the study considers technical, economic and operational feasibility.</p>
+
+  <h2>3.1 Technical Feasibility</h2>
+  <p>Technical feasibility examines whether the hardware, software and technical skills required for the system are available and reliable.</p>
+
+  <h3>3.1.1 Hardware Requirements</h3>
+  <table>
+    <caption>Table 3.1: Proposed hardware requirements</caption>
+    <tr><th style="width:28%">Hardware</th><th>Purpose</th></tr>
+    <tr><td>Desktop or laptop computers</td><td>Used at reception, records, consultation rooms and management offices to access the system.</td></tr>
+    <tr><td>Secure server or cloud-hosted server</td><td>Runs the application and stores the medical center's centralized data.</td></tr>
+    <tr><td>Router, network switch and cabling</td><td>Connects authorized clinic workstations and provides controlled internet access.</td></tr>
+    <tr><td>Uninterruptible power supplies</td><td>Protects equipment and permits safe continuation or shutdown during electricity interruptions.</td></tr>
+    <tr><td>Backup storage</td><td>Keeps protected copies of system data for recovery after accidental loss or equipment failure.</td></tr>
+    <tr><td>Printer, where required</td><td>Produces approved appointment lists or summaries when a printed copy is needed.</td></tr>
+  </table>
+
+  <h3>3.1.2 Software Requirements</h3>
+  <table>
+    <caption>Table 3.2: Proposed software requirements</caption>
+    <tr><th style="width:28%">Software</th><th>Purpose</th></tr>
+    <tr><td>Web browser</td><td>Provides access to the system from computers and suitable mobile devices.</td></tr>
+    <tr><td>Web application</td><td>Provides the patient registration, scheduling, record, notification and reporting functions.</td></tr>
+    <tr><td>Relational database software</td><td>Stores structured patient, doctor, appointment and medical-record information.</td></tr>
+    <tr><td>Server operating system</td><td>Provides a supported environment for the application and database.</td></tr>
+    <tr><td>Security software and encryption</td><td>Protects devices and communication and reduces unauthorized access to sensitive information.</td></tr>
+    <tr><td>Backup and recovery software</td><td>Automates backup creation and supports restoration after data loss.</td></tr>
+    <tr><td>SMS or email service</td><td>Delivers appointment confirmations, reminders and cancellation notices.</td></tr>
+  </table>
+
+  <h3>3.1.3 Availability and Reliability of the Technology</h3>
+  <p>The proposed system can be built with established web and relational database technologies. Computers, networking equipment, backup devices, web hosting and communication services are available in Nigeria. The use of a browser-based system reduces the need to install separate application software on every workstation and allows the interface to work on different screen sizes.</p>
+  <p>The principal technical concerns are unreliable electricity, internet interruptions, equipment failure and unauthorized access. These concerns can be reduced with uninterruptible power supplies, backup electricity, a dependable hosting arrangement, secure network configuration, individual user accounts, encrypted connections, regular software updates and tested backups. Technical support must also be available to correct faults and manage the system after implementation.</p>
+  <div class="finding"><span class="label">Technical feasibility conclusion:</span> The project is technically feasible because the required hardware and software are available and use reliable, established technology. Vital Spring Medical Center must budget for power protection, security, backups and continuing technical support.</div>
+
+  <h2>3.2 Economic Feasibility</h2>
+  <p>Economic feasibility compares the estimated costs of developing and operating the system with the benefits expected from its use. The figures are simple academic estimates in Nigerian naira and should be replaced with current supplier quotations before a real purchase.</p>
+
+  <h3>3.2.1 Estimated Costs</h3>
+  <table>
+    <caption>Table 3.3: Estimated project costs</caption>
+    <tr><th>Cost Item</th><th class="right">Estimated Cost (₦)</th></tr>
+    <tr><td>System analysis and design</td><td class="right">450,000</td></tr>
+    <tr><td>Application development and testing</td><td class="right">2,200,000</td></tr>
+    <tr><td>Computers and basic peripherals</td><td class="right">1,600,000</td></tr>
+    <tr><td>Network equipment and installation</td><td class="right">400,000</td></tr>
+    <tr><td>Power backup equipment</td><td class="right">600,000</td></tr>
+    <tr><td>Initial hosting and security setup</td><td class="right">250,000</td></tr>
+    <tr><td>Conversion of active paper records</td><td class="right">350,000</td></tr>
+    <tr><td>Staff training</td><td class="right">300,000</td></tr>
+    <tr><td>Initial maintenance and support</td><td class="right">500,000</td></tr>
+    <tr><td>Contingency allowance</td><td class="right">650,000</td></tr>
+    <tr><th>Total Estimated Initial Cost</th><th class="right">7,300,000</th></tr>
+  </table>
+  <p>After implementation, hosting, messaging, connectivity, maintenance, backup storage and refresher training are estimated to cost approximately <strong>₦1,400,000 per year</strong>.</p>
+
+  <h3>3.2.2 Expected Benefits</h3>
+  <table>
+    <caption>Table 3.4: Estimated annual benefits</caption>
+    <tr><th>Benefit</th><th>Explanation</th><th class="right">Estimated Annual Value (₦)</th></tr>
+    <tr><td>Reduced administrative staff time</td><td>Less searching, copying, counting and correction of appointment information.</td><td class="right">1,500,000</td></tr>
+    <tr><td>Increased patient throughput</td><td>Better scheduling and fewer missed appointments make more consultation time useful.</td><td class="right">2,000,000</td></tr>
+    <tr><td>Reduced stationery and storage costs</td><td>Lower use of paper folders, registers, printing and physical storage.</td><td class="right">450,000</td></tr>
+    <tr><td>Reduced record reconstruction and scheduling errors</td><td>Fewer lost folders, duplicate entries and conflicting bookings.</td><td class="right">300,000</td></tr>
+    <tr><td>Faster preparation of management information</td><td>Reports are generated from stored data instead of manual counting.</td><td class="right">250,000</td></tr>
+    <tr><th colspan="2">Total Estimated Annual Benefit</th><th class="right">4,500,000</th></tr>
+  </table>
+  <p>Other benefits are difficult to express as money but remain important. These include shorter patient waiting times, improved data accuracy, easier continuity of care, better patient confidence and stronger control over confidential records.</p>
+
+  <h3>3.2.3 Simple Cost-Benefit Analysis</h3>
+  <div class="brief">
+    <p><strong>Estimated initial cost:</strong> ₦7,300,000</p>
+    <p><strong>Estimated annual operating cost:</strong> ₦1,400,000</p>
+    <p><strong>Estimated annual benefit:</strong> ₦4,500,000</p>
+    <p><strong>Estimated annual net benefit:</strong> ₦4,500,000 - ₦1,400,000 = <strong>₦3,100,000</strong></p>
+    <p><strong>Simple payback period:</strong> ₦7,300,000 / ₦3,100,000 = <strong>approximately 2.35 years</strong></p>
+  </div>
+  <p>The result means that, if the estimated benefits are achieved, the initial investment may be recovered in approximately two years and four months. The system would then continue to provide financial and non-financial benefits, subject to annual operating costs.</p>
+  <div class="finding"><span class="label">Economic feasibility conclusion:</span> The project is economically feasible because the expected savings and improved use of appointment capacity can recover the estimated investment within a reasonable period. Management should confirm actual prices, patient volume and staff-time savings before approving expenditure.</div>
+
+  <h2>3.3 Operational Feasibility</h2>
+  <p>Operational feasibility considers whether clinic staff and patients will be able to use the proposed system effectively in their normal activities.</p>
+
+  <h3>3.3.1 Ability of Staff to Use the System</h3>
+  <p>The main system tasks, such as searching for a patient, selecting an available appointment time, confirming an arrival and viewing a daily schedule, are similar to activities already performed manually. A clear interface and role-based menus will make these activities easier to learn. Receptionists and records personnel will require the most detailed training because they create and update a large amount of information. Doctors and nurses will require focused training on schedules, patient history, clinical notes and secure use of the system.</p>
+  <p>Some employees may resist the new system because they are comfortable with the appointment book or fear making mistakes. They should be involved during requirements gathering and interface review. A pilot period should be used before full implementation so that problems can be corrected without interrupting the whole clinic.</p>
+
+  <h3>3.3.2 Required Training</h3>
+  <table>
+    <caption>Table 3.5: Proposed staff training</caption>
+    <tr><th style="width:26%">User Group</th><th>Training Required</th></tr>
+    <tr><td>Receptionists and records staff</td><td>Patient registration, patient search, appointment booking, rescheduling, cancellation, duplicate prevention, check-in and correction procedures.</td></tr>
+    <tr><td>Doctors</td><td>Availability management, daily schedule, permitted patient-history access, consultation notes and secure sign-out.</td></tr>
+    <tr><td>Nurses</td><td>Appointment lists, patient check-in, permitted record access and reporting inaccurate information.</td></tr>
+    <tr><td>Clinic Manager</td><td>Attendance and utilization reports, user oversight and review of system performance.</td></tr>
+    <tr><td>System Administrator</td><td>User accounts, permissions, backups, restoration, monitoring, security updates and incident handling.</td></tr>
+    <tr><td>All staff</td><td>Password security, patient confidentiality, phishing awareness, correct data handling and reporting suspected privacy incidents.</td></tr>
+  </table>
+
+  <h3>3.3.3 Patient Data Privacy</h3>
+  <p>Patient privacy is essential because the system will store personal and medical information. Vital Spring Medical Center must handle this information in accordance with the Nigeria Data Protection Act 2023 and professional duties of medical confidentiality. The following operational controls are required:</p>
+  <ul>
+    <li>Every staff member must use an individual account instead of a shared username.</li>
+    <li>Users must only see the information required for their assigned duties.</li>
+    <li>Passwords must be protected, and users must sign out or lock the screen when leaving a workstation.</li>
+    <li>Important access and changes must be recorded so that inappropriate activity can be investigated.</li>
+    <li>Appointment messages must contain only the minimum information necessary and must not reveal detailed medical information.</li>
+    <li>Backups must be protected and tested so patient records can be restored after a failure.</li>
+    <li>Staff must receive confidentiality and data-protection training before using real patient records.</li>
+    <li>Incorrect records, suspected unauthorized access and lost devices must be reported immediately through an established procedure.</li>
+  </ul>
+  <p>Patients who cannot or do not wish to book online should still be able to make appointments through the reception desk or telephone. This ensures that the system improves access rather than excluding patients with limited internet access or digital skills.</p>
+  <div class="finding"><span class="label">Operational feasibility conclusion:</span> The system is operationally feasible. Clinic staff can use it effectively if the interface is simple, training is practical, management supports the change, patients retain an assisted booking option and privacy rules are enforced.</div>
+</section>
+
+<section>
+  <h1>4.0 Conclusion</h1>
+  <p>The manual appointment and patient-record process at Vital Spring Medical Center causes scheduling conflicts, slow record retrieval, lost information, long waiting times and excessive administrative work. The proposed Clinic Appointment System will centralize patient profiles, doctor availability and appointment scheduling while providing reminders, authorized access to history and basic management reports.</p>
+  <p>The study finds that the project is technically feasible because the necessary hardware and software are available and reliable. It is economically feasible because the simple cost-benefit analysis estimates an annual net benefit of ₦3,100,000 and a payback period of approximately 2.35 years. It is operationally feasible because its functions match existing clinic activities and can be learned through role-specific training. Patient privacy can be improved through individual accounts, restricted access, staff training, activity records and protected backups.</p>
+  <p>Vital Spring Medical Center should therefore proceed to Step 2, Requirements Analysis and Data Modeling, where user stories, functional requirements, non-functional requirements, a Context-Level Data Flow Diagram and a Level-0 Data Flow Diagram will be prepared.</p>
+</section>
+
+<section>
+  <h1>References</h1>
+  <ol>
+    <li>Federal Republic of Nigeria. (2023). <em>Nigeria Data Protection Act, 2023</em>.</li>
+    <li>Kendall, K. E., &amp; Kendall, J. E. (2019). <em>Systems Analysis and Design</em> (10th ed.). Pearson.</li>
+    <li>Satzinger, J. W., Jackson, R. B., &amp; Burd, S. D. (2016). <em>Systems Analysis and Design in a Changing World</em> (7th ed.). Cengage Learning.</li>
+  </ol>
+  <p class="small">The financial figures in this feasibility study are academic planning estimates and not supplier quotations.</p>
+</section>
+
+</body>
+</html>
