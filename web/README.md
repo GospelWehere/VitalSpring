@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vital Spring Medical Center — Clinic Appointment System
 
-## Getting Started
+INS 204 System Specification (Group 9) implementation. A clinic appointment
+system covering registration, slot-based booking, queue management, clinical
+visits, notifications, reporting, administration, backup, and a patient
+portal.
 
-First, run the development server:
+- **Live deployment:** https://vital-spring.vercel.app
+- **Stack:** Next.js 16 (App Router, server actions), PostgreSQL (Neon),
+  TypeScript, Tailwind CSS, vitest.
+- **Design source:** `../report/Vital_Spring_System_Specification.html`
+  and `../database/vital-spring-schema.sql`.
+
+## Demo accounts
+
+| Role          | Username   | Password            |
+|---------------|------------|---------------------|
+| Administrator | `admin`    | `Administrator@123` |
+| Manager       | `manager`  | `Manager@123`       |
+| Reception     | `reception`| `Reception@123`     |
+| Records       | `records`  | `Records@123`       |
+| Nurse         | `nurse`    | `Nurse@123`         |
+| Doctor        | `doctor`   | `Doctor@123`        |
+
+Demo patient: **Amarachi Okafor** (hospital number `VS-000001`, phone
+`08033124567`). Practitioner 1 is in General Outpatient.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.local.example .env.local   # set DATABASE_URL (Neon) + SESSION_SECRET
+npm install
+npm run dev                        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Database setup (creates schema + seed data in the configured database):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npx tsx --env-file=.env.local db/seed.ts
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Testing
 
-## Learn More
+```bash
+npm test          # vitest integration tests AT-01 .. AT-07 against the configured database
+node scripts/smoke-full.mjs   # end-to-end flow against a running build (npm run start)
+npm run lint
+npx tsc --noEmit
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Acceptance tests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| ID   | Scenario | Result |
+|------|----------|--------|
+| AT-01 | Two users confirm the same slot simultaneously | Exactly one appointment commits; the other receives alternatives |
+| AT-02 | Reception user attempts to open a visit-record address | Access denied; no clinical text returned; denied attempt logged |
+| AT-03 | Registration uses an existing phone and matching DOB/name | Possible duplicate displayed before any new patient is created |
+| AT-04 | Reception checks in one appointment twice | One queue entry remains; second attempt explains current queue number |
+| AT-05 | Message provider reports temporary failure | Notification becomes retrying and later records final delivery result |
+| AT-06 | Backup restoration exercise | Export/restore round trip preserves every table; sequences re-synced so the service keeps working afterwards |
+| AT-07 | Manager runs the June General Outpatient report | Totals reconcile with underlying data; median wait uses queue timestamps |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Feature map
 
-## Deploy on Vercel
+- **Authentication / accounts** — JWT sessions (`vs_session`, 15-minute
+  inactivity timeout), role-based access control (receptionist, records,
+  nurse, doctor, manager, administrator), account disable and password reset.
+- **Patients** — registration with duplicate detection (phone, DOB + name),
+  search, edit, hospital numbers from `hospital_number_seq`.
+- **Booking** — slot list per practitioner/date, one-transaction booking
+  (row lock + partial unique index on active `appointment.slot_id`),
+  reschedule, cancel, patient portal booking/cancellation.
+- **Queue** — check-in (one numbered entry per appointment per day),
+  transitions `waiting → vitals → called → with_practitioner → completed`
+  with role enforcement, live queue with waiting minutes.
+- **Visits** — clinical record save (doctor only), clinical history
+  (doctor/nurse only, denied access logged), NFR-12: patient messages omit
+  diagnosis.
+- **Notifications** — simulated SMS provider with queued/retrying/delivered
+  states and retry logic.
+- **Reports** — attendance, wait time (median from queue timestamps),
+  utilisation, no-show summary; manager-only.
+- **Administration** — account management, audit trail, protected JSON
+  backup export/restore (all 10 tables, one transaction).
+- **Downtime** — offline pack page with manual back-capture guidance.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Implementation deviations from the specification
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Slot rebooking after cancellation** — the reference schema declares
+   `UNIQUE (slot_id)` on `appointment`. Because the cancellation flow reopens
+   the slot, a cancelled row would permanently block rebooking. The unique
+   constraint is therefore a **partial unique index on active slots only**
+   (`WHERE status NOT IN ('cancelled', 'no_show')`), preserving the AT-01
+   double-booking barrier for concurrent active bookings while letting a
+   cancelled appointment's slot be booked again.
+2. **Date handling** — PostgreSQL returns `DATE` columns as JavaScript
+   `Date` objects; all comparisons normalise through `clinicDateISO()` in
+   `lib/dates.ts`.
+3. **Notification provider** — the real SMS/email gateway is simulated
+   (`processNotificationQueue` in `lib/notify.ts`); retries and final
+   delivery are recorded in the `notification` table.
+4. **Backup restore** — restoration also re-synchronises every BIGSERIAL
+   sequence (not just `hospital_number_seq`) so the service continues to
+   accept inserts after a restore.
+
+## Deployment
+
+```bash
+vercel env add DATABASE_URL production
+vercel env add SESSION_SECRET production
+vercel deploy --prod
+```
