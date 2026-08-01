@@ -1,5 +1,8 @@
 -- Vital Spring Medical Center Clinic Appointment System
--- PostgreSQL reference schema for the INS 204 system specification.
+-- PostgreSQL schema mirroring the INS 204 system specification (Group 9).
+-- Source of record: ../database/vital-spring-schema.sql
+
+CREATE SEQUENCE IF NOT EXISTS hospital_number_seq START 1;
 
 CREATE TABLE department (
   department_id BIGSERIAL PRIMARY KEY,
@@ -58,6 +61,8 @@ CREATE TABLE availability_slot (
   UNIQUE (practitioner_id, slot_date, start_time)
 );
 
+CREATE INDEX ix_slot_date_status ON availability_slot (slot_date, slot_status);
+
 CREATE TABLE appointment (
   appointment_id BIGSERIAL PRIMARY KEY,
   patient_id BIGINT NOT NULL REFERENCES patient(patient_id) ON DELETE RESTRICT,
@@ -115,7 +120,8 @@ CREATE TABLE notification (
   destination VARCHAR(120) NOT NULL,
   delivery_status VARCHAR(16) NOT NULL DEFAULT 'queued'
     CHECK (delivery_status IN ('queued', 'sent', 'delivered', 'retrying', 'failed')),
-  processed_at TIMESTAMPTZ
+  processed_at TIMESTAMPTZ,
+  attempts SMALLINT NOT NULL DEFAULT 0
 );
 
 CREATE TABLE activity_log (
@@ -130,8 +136,3 @@ CREATE TABLE activity_log (
 
 CREATE INDEX ix_activity_user_time ON activity_log (user_id, action_time DESC);
 CREATE INDEX ix_activity_object ON activity_log (object_type, object_id, action_time DESC);
-
--- Appointment confirmation runs in one transaction:
--- lock the selected availability_slot, verify slot_status='open', insert the
--- appointment, then update slot_status='reserved'. The UNIQUE slot_id on
--- appointment provides a second database-level conflict barrier.
