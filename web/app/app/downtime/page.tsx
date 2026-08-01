@@ -1,8 +1,8 @@
 import { requireStaff } from "@/app/actions/auth";
-import { Card, Table } from "@/components/ui";
+import { Card, Table, BrandMark } from "@/components/ui";
 import { formatDate, formatTime, todayClinicISO, addDaysISO } from "@/lib/dates";
 import { query } from "@/db/client";
-import { BrandMark } from "@/components/ui";
+import { PrintButton } from "./PrintButton";
 
 export const metadata = { title: "Downtime Pack" };
 export const dynamic = "force-dynamic";
@@ -36,13 +36,7 @@ export default async function DowntimePage() {
             the numbered downtime sheets, then back-capture with a second person verifying each entry.
           </p>
         </div>
-        <button
-          type="button"
-          onClick={() => window.print()}
-          className="rounded-lg bg-brand-700 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600"
-        >
-          Print next-day list
-        </button>
+        <PrintButton />
       </div>
 
       <Card className="print:border-0 print:shadow-none print:p-0">
