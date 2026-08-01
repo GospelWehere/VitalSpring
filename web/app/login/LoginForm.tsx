@@ -54,6 +54,31 @@ export default function LoginForm() {
               {pending ? "Signing in…" : "Sign in"}
             </PrimaryButton>
           </form>
+
+          <div className="mt-6 rounded-xl border border-dashed border-brand-300 bg-brand-50 p-4">
+            <p className="mb-2 text-sm font-bold text-brand-700">Demo accounts</p>
+            <table className="w-full text-left text-xs text-ink">
+              <tbody className="divide-y divide-brand-100">
+                <tr className="text-ink-soft">
+                  <td className="py-1 pr-2 font-semibold">Username</td>
+                  <td className="py-1 font-semibold">Password</td>
+                </tr>
+                {[
+                  ["admin", "Administrator@123"],
+                  ["manager", "Manager@123"],
+                  ["reception", "Reception@123"],
+                  ["records", "Records@123"],
+                  ["nurse", "Nurse@123"],
+                  ["doctor", "Doctor@123"],
+                ].map(([u, p]) => (
+                  <tr key={u}>
+                    <td className="py-1 pr-2 font-mono text-brand-700">{u}</td>
+                    <td className="py-1 font-mono">{p}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </main>
     </div>
