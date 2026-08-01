@@ -43,5 +43,3 @@ ctx.txt
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
-.env*
